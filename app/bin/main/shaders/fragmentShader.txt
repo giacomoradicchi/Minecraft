@@ -1,0 +1,51 @@
+#version 400 core
+
+in vec2 pass_textureCoords;
+flat in vec3 surfaceNormal;
+in vec3 toLightVector;
+in float visibility;
+in float aOFactor;
+
+out vec4 out_Color;
+
+uniform sampler2D textureSampler;
+uniform vec3 lightColor;
+uniform vec3 skyColor;
+uniform bool isWireframe;
+uniform vec3 wireframeColor;
+uniform bool isStatic;
+
+void main(void) {
+
+    if(!isWireframe) {
+        if(isStatic) {
+            vec4 textureColor = texture(textureSampler, pass_textureCoords);
+            if(textureColor.a < 0.5) {
+                discard;
+            }
+            out_Color = textureColor;
+        } else {
+            vec3 unitNormal = normalize(surfaceNormal);
+            vec3 unitLightVector = normalize(toLightVector);
+
+            float nDot1 = dot(unitNormal, unitLightVector);
+            nDot1 = nDot1 + 0.5;
+            float brightness = min(1, max(nDot1, 0.7));
+            vec3 diffuse = brightness * lightColor;
+
+            vec4 textureColor = texture(textureSampler, pass_textureCoords);
+            if(textureColor.a < 0.5) {
+                discard;
+            }
+            //textureColor = vec4(1, 1, 1, 1);
+            out_Color = vec4(diffuse, 1.0) * textureColor;
+            
+            out_Color = mix(vec4(0, 0, 0, 1.0), out_Color, aOFactor);
+            out_Color = mix(vec4(skyColor, 1.0), out_Color, visibility);
+        }
+    } else {
+        out_Color = vec4(wireframeColor, 1);
+    }
+    
+    
+}
