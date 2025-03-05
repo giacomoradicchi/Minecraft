@@ -1,0 +1,55 @@
+#version 400 core
+
+in vec3 position;
+in vec2 textureCoords;
+in vec3 normal;
+in float aOCount;
+
+out vec2 pass_textureCoords;
+flat out vec3 surfaceNormal;
+out vec3 toLightVector;
+out float visibility;
+out float aOFactor;
+
+uniform mat4 transformationMatrix;  
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform vec3 lightPosition;
+uniform bool isWireframe;
+uniform bool isStatic;
+
+const float density = 0.001;
+const float gradient = 4;
+
+void main(void) {
+
+    if(isStatic) {
+        gl_Position = transformationMatrix * vec4(position.x, position.y, 0, 1);
+        pass_textureCoords = textureCoords;
+    } else {
+        vec4 worldPosition = transformationMatrix * vec4(position.x, position.y, position.z, 1.0);
+        vec4 positionRelativeToCam =  viewMatrix * worldPosition;
+        gl_Position = projectionMatrix * positionRelativeToCam;
+
+        if(!isWireframe) {
+            pass_textureCoords = textureCoords;
+
+            surfaceNormal = (transformationMatrix * vec4(normal, 0.0)).xyz;
+            toLightVector = lightPosition - worldPosition.xyz;
+
+            float distance = length(positionRelativeToCam.xyz);
+            visibility = exp(-pow((distance*density), gradient));
+            visibility = clamp(visibility, 0.0, 1.0);
+
+            aOFactor = (3 - aOCount)/5 + 0.4;
+            aOFactor = clamp(aOFactor, 0.4, 1);
+        } else {
+            pass_textureCoords = vec2(0, 0);
+            surfaceNormal = vec3(0, 0, 0);
+            toLightVector = vec3(0, 0, 0);
+            visibility = 1;
+            aOFactor = 3/5 + 0.4;
+        }
+    }
+    
+}
