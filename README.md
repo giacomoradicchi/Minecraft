@@ -1,59 +1,55 @@
 # Minecraft [LWJGL Edition]
-[Guarda il video su Youtube](https://youtu.be/bnIEqK2hLDQ?si=AHKdck-XqZ79HnD7)
 
-![screenshot](app/res/img/screenshot.png)
+Guarda il [video su YouTube](https://youtu.be/bnIEqK2hLDQ?si=AHKdck-XqZ79HnD7)
 
-## Implementazioni:
-- Ombre sulle facce dei blocchi + ambient occlusion
-- Ray casting della camera per l'aggiunta/rimozione dei blocchi
-- Chunk mesh per un rendering più ottimizzato
-- Perlin noise per la generazione di un chunk in una qualsiasi posizione
-- Mondo senza limiti con generazione dinamica dei chunk
-- Supporto ad un qualsiasi controller wireless/via cavo
-- Unico bioma
-- Nebbia in lontananza
-- Blocchi principali (grass, dirt, stone, sand, tree_wood, tree_leaves, diamond, raw_diamond, gold)
-- Texture atlas con mipmapping per il LOD (level of detail)
-- Time stamp fissato a 120Hz (modificabile nel main)
-- Frustum culling
-- Alto ancora
+![Screenshot](app/res/img/screenshot.png)
 
-## Possibili miglioramenti/aggiunte:
-- Cicli giorno/notte
-- Nuovi biomi
-- Spawn casuale nel mondo
-- Collisioni
-- Supporto al mouse
-- Modifica del chunk mesh più ottimizzato
-- Multiplayer
-- Codice classe main più pulito
+## Cosa Offre il Gioco
+- **Ombre realistiche:** Le luci e le ombre sui blocchi danno un aspetto più naturale.
+- **Interazione semplice:** Con il click della telecamera puoi aggiungere o rimuovere blocchi facilmente.
+- **Mondo fluido:** Il gioco crea il mondo man mano che lo esplori, senza limiti.
+- **Generazione del terreno:** Utilizza tecniche di generazione casuale per creare il terreno in ogni angolo.
+- **Compatibilità controller:** Funziona con qualsiasi controller, sia cablato che wireless.
+- **Atmosfera:** Un solo bioma, arricchito da una nebbia in lontananza.
+- **Blocchi essenziali:** Troverai erba, terra, pietra, sabbia, legno, foglie, diamante, diamante grezzo e oro.
+- **Texture ottimizzate:** Le immagini sono studiate per restare nitide a diverse distanze.
+- **Velocità di aggiornamento:** Il gioco gira a 120Hz (ma puoi modificarlo nel main).
+- **Efficienza:** Il sistema salta il rendering degli oggetti che non vedi, migliorando le prestazioni.
+- **e molto altro...**
 
-## Input:
-#### Tastiera:
-- `WASD` per il movimento
-- `← ↑ ↓ →` per lo spostamento visuale
-- `space` per aumentare quota
-- `alt` / `option` per diminuire quota
-- `E` per spaccare i blocchi
-- `R` per aggiungere i blocchi
+## Idee per Futuri Aggiornamenti
+- Ciclo giorno/notte
+- Nuovi paesaggi e ambienti
+- Punto di spawn casuale
+- Miglioramento delle collisioni
+- Supporto per l'uso del mouse
+- Ottimizzazione ulteriore del sistema di visualizzazione
+- Modalità multiplayer
+- Rifinitura e semplificazione del codice principale
 
-#### Controller Playstation:
-- `analogico L` per il movimento
-- `analogico R` per lo spostamento visuale
-- `R2` per aumentare quota
-- `L2` per diminuire quota
-- `L3` per scattare
-- `□` per spaccare i blocchi
-- `○` per aggiungere i blocchi
+## Controlli
 
-**Nota**: è necessario semplicemente collegare il controller via bluetooth/cavo e la connessione verrà automaticamente stabilita.
-Il controller può essere di una qualsiasi marca.
+### Tastiera
+- **Movimento:** `W`, `A`, `S`, `D`
+- **Visuale:** Frecce (`←`, `↑`, `↓`, `→`)
+- **Quota:** Premi `Space` per salire, `Alt`/`Option` per scendere
+- **Interazione:** Premi `E` per rimuovere e `R` per aggiungere blocchi
 
-## Building
+### Controller PlayStation
+- **Movimento:** Usa l’analogico sinistro
+- **Visuale:** Usa l’analogico destro
+- **Quota:** Premi `R2` per salire, `L2` per scendere
+- **Scatto:** Premi `L3`
+- **Interazione:** Usa `□` per rimuovere blocchi e `○` per aggiungerli
 
-#### MacOS con processore arm64 (M1, M2, ...) su Visual Studio Code:
-Sulla barra di ricerca, scrivere `>Gradle: Run a Gradle Build`, premere invio, poi `run` e di nuovo invio.
+> **Nota:** Collega il controller via Bluetooth o cavo e il gioco lo riconoscerà automaticamente, indipendentemente dalla marca.
 
-#### Altre piattaforme:
-Nei giorni successivi cercherò di eseguire il codice pure su Windows, MacOS Intel e Linux. Terrò la repository aggiornata.
+## Come Compilare il Gioco
 
+### Su MacOS (processori arm64 come M1, M2, …)
+1. Apri Visual Studio Code.
+2. Nella barra di ricerca, digita `>Gradle: Run a Gradle Build`.
+3. Premi Invio, scegli l'opzione `run` e conferma.
+
+### Su Altre Piattaforme
+Sto lavorando per rendere il gioco compatibile anche con Windows, MacOS Intel e Linux. Tieni d'occhio la repository per aggiornamenti!
